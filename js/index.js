@@ -62,11 +62,28 @@ map.classList.add('link');
     url.classList.add('img-content');
     url.appendChild(map);
     imgContent.appendChild(url);
+
+map.addEventListener('click', function(){ 
     url.href = 'www.google.com';
+})
 
-map.addEventListener('scroll', function(){
-    
-    
-    
 
+//EVENT LISTENER 5 KEYDOWN Pressing the B key will take you to the 
+//Bottom of the page
+const destination = document.querySelector('.destination');
+const footer = document.querySelector('footer');
+
+//button code
+const button = document.createElement('button');
+document.body.appendChild(button);
+destination.appendChild(button);
+button.style = "width: 150px; height: 40px; background-color: red; border: 2px solid black; margin: 15% 0% 2% 128%; font-family: times new roman; font-weight: bold;"
+button.innerText = ('BACK TO THE TOP');
+button.onclick = '.footer';
+
+button.addEventListener('keydown', function(event){
+    if (event.keyCode === 66) {
+        button.click()
+    }
+    console.log(button);
 })
