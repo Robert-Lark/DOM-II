@@ -1,15 +1,5 @@
 // Your code goes here
-/*
-click
-mouseover
-mouseleave
-mousemove
-mouseenter
 
-
-tabindex = "0"
-
-*/
 
 const body = document.querySelector('body');
 const home = document.querySelector('.home');
@@ -17,9 +7,10 @@ const home = document.querySelector('.home');
 const logo = document.querySelector('.logo-heading');
 
 logo.addEventListener('mouseenter', function(){
-    logo.style.color = 'red';
+    logo.style = 'color: red; border: 2px solid black;';
+    
         logo.addEventListener('mouseleave', function(){
-            logo.style.color = 'black';
+            logo.style = 'color: black; border: none;'
         });
 });
 
@@ -64,7 +55,7 @@ map.classList.add('link');
     imgContent.appendChild(url);
 
 map.addEventListener('click', function(){ 
-    url.href = 'www.google.com';
+    url.href = 'https://www.google.com/maps';
 })
 
 
@@ -86,7 +77,7 @@ button.onclick = '.footer';
 const bottomA = document.createElement('a');
 document.body.appendChild(bottomA);
 bottomA.classList.add = ('bottom');
-bottomA.href = '.bottom';
+bottomA.href = 'https://www.youtube.com/watch?v=93hq0YU3Gqk';
 bottomA.appendChild(button);
 destination.appendChild(bottomA);
 document.addEventListener('keypress', function(event){
@@ -133,15 +124,42 @@ anotherMouseEvent.addEventListener('mouseup', function(){
 
 anotherMouseEvent.addEventListener('mousedown', function(){
     anotherMouseEvent.style.backgroundColor = 'yellow';
+    
+    home.addEventListener('click', event4);
+    function event4() {
+      home.style.backgroundColor = 'dodgerBlue';
+    }  
+    home.addEventListener('click', function(eventHandler) {
+        eventHandler.stopPropagation();
+       })
+
 })
 
-//EVENT LISTENER 9 
+//EVENT LISTENER 9 + event propogation
 const imgTag = document.querySelector('.content-destination img')
+
 document.addEventListener('dblclick', function(){
 imgTag.src = 'img/postcard 1.jpg'
+home.addEventListener('click', event4);
+
+        function event4() {
+          home.style.backgroundColor = 'yellow';
+        }  
+         home.addEventListener('click', function(eventHandler) {
+             eventHandler.stopPropagation();
+            })
 })
 
 //Event Listener 10
 document.addEventListener('contextmenu', function(){
     imgTag.src = 'img/destination.jpg'
-    })
+})
+
+
+//preventing default nav behavior
+
+const navA = document.querySelector('.nav-link');
+
+navA.addEventListener('click', function(event){
+    event.preventDefault();
+})
