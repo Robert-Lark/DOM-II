@@ -135,8 +135,13 @@ anotherMouseEvent.addEventListener('mousedown', function(){
     anotherMouseEvent.style.backgroundColor = 'yellow';
 })
 
-//EVENT LISTENER 8 
-
-document.addEventListener('play' {
-    
+//EVENT LISTENER 9 
+const imgTag = document.querySelector('.content-destination img')
+document.addEventListener('dblclick', function(){
+imgTag.src = 'img/postcard 1.jpg'
 })
+
+//Event Listener 10
+document.addEventListener('contextmenu', function(){
+    imgTag.src = 'img/destination.jpg'
+    })
