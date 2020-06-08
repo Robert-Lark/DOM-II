@@ -81,9 +81,62 @@ button.style = "width: 150px; height: 40px; background-color: red; border: 2px s
 button.innerText = ('BACK TO THE TOP');
 button.onclick = '.footer';
 
-button.addEventListener('keydown', function(event){
-    if (event.keyCode === 66) {
+
+
+const bottomA = document.createElement('a');
+document.body.appendChild(bottomA);
+bottomA.classList.add = ('bottom');
+bottomA.href = '.bottom';
+bottomA.appendChild(button);
+destination.appendChild(bottomA);
+document.addEventListener('keypress', function(event){
+    if (event.key === 'b') {
         button.click()
+    } else {
+        button.href = '.header'
     }
-    console.log(button);
+})
+
+//EVENT LISTENER 6 scroll
+const header = document.querySelector('header');
+const navContainer = document.createElement('div')
+document.body.prepend(navContainer);
+navContainer.appendChild(header);
+navContainer.classList.add('fade-scroll');
+const script = document.createElement('script');
+document.body.prepend(script);
+script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js'
+document.addEventListener('scroll', function() {  
+    var documentEl = $(document),
+        fadeElem = $('.fade-scroll');
+    documentEl.on('scroll', function() {
+        var currScrollPos = documentEl.scrollTop();
+        fadeElem.each(function() {
+            var $this = $(this),
+                elemOffsetTop = $this.offset().top;
+            if (currScrollPos > elemOffsetTop) $this.css('opacity', 1 - (currScrollPos-elemOffsetTop)/400);
+        }); 
+    });
+});
+
+
+
+//EVENT LISTENER 7 Mouseup 
+
+const anotherMouseEvent = document.querySelector('.intro')
+
+anotherMouseEvent.addEventListener('mouseup', function(){
+    anotherMouseEvent.style.backgroundColor = 'red';
+})
+
+//EVENT LISTENER 8 Mousedown
+
+anotherMouseEvent.addEventListener('mousedown', function(){
+    anotherMouseEvent.style.backgroundColor = 'yellow';
+})
+
+//EVENT LISTENER 8 
+
+document.addEventListener('play' {
+    
 })
