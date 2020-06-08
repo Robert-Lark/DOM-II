@@ -1,20 +1,38 @@
 // Your code goes here
+/*
+Event Listeners used:
 
+mouseenter
+mouseleave
+mouseover
+mousemove
+click
+keypress
+scroll
+mouseup
+mousedown
+dblclick
+contextmenu
+
+
+*/
 
 const body = document.querySelector('body');
 const home = document.querySelector('.home');
-//EVENT LISTENER 1
+//EVENT LISTENER 1 Mouseenter Mouseleave 
+// changes the logo when hovered over
 const logo = document.querySelector('.logo-heading');
 
 logo.addEventListener('mouseenter', function(){
-    logo.style = 'color: red; border: 2px solid black;';
+    logo.style = 'color: red;';
     
         logo.addEventListener('mouseleave', function(){
             logo.style = 'color: black; border: none;'
         });
 });
 
-//EVENT LISTENER 2
+//EVENT LISTENER 2 mouseover
+// Secret Bambam image appears when ! is hovered over
 
 const secretBamBam = document.querySelector('h2');
 secretBamBam.innerHTML = 'Welcome To Fun Bus<span class ="secret">!</span>'
@@ -33,7 +51,8 @@ secret.addEventListener('mouseover', function() {
 })
 })
 
-//EVENT LISTENER 3
+//EVENT LISTENER 3 Mousemove mouseleave
+// enlarge and shrink nav links useing .forEach
 
 const navLink = document.querySelectorAll('.nav-link');
 
@@ -44,23 +63,30 @@ navLink.forEach(function(navLink){
         navLink.style.transform = 'scale(1)'})
     });
         
-//EVENT LISTENER 4
+//EVENT LISTENER 4 click
+// single click on the image of a map will take you to 
+// googleMaps
+
 const imgContent= document.querySelector('.img-content');
 const  map = document.querySelector('.img-content img');
 map.classList.add('link');
-    const url = document.createElement('a');
-    document.body.appendChild(url);
-    url.classList.add('img-content');
-    url.appendChild(map);
-    imgContent.appendChild(url);
+const url = document.createElement('a');
+document.body.appendChild(url);
+url.classList.add('img-content');
+url.appendChild(map);
+imgContent.appendChild(url);
 
 map.addEventListener('click', function(){ 
     url.href = 'https://www.google.com/maps';
 })
 
 
-//EVENT LISTENER 5 KEYDOWN Pressing the B key will take you to the 
-//Bottom of the page
+//EVENT LISTENER 5 KEYDOWN 
+//when the p key is hit will take you to sneezing panda video
+
+/*
+//query selectors
+
 const destination = document.querySelector('.destination');
 const footer = document.querySelector('footer');
 
@@ -70,9 +96,8 @@ document.body.appendChild(button);
 destination.appendChild(button);
 button.style = "width: 150px; height: 40px; background-color: red; border: 2px solid black; margin: 15% 0% 2% 128%; font-family: times new roman; font-weight: bold;"
 button.innerText = ('BACK TO THE TOP');
-button.onclick = '.footer';
 
-
+//link code
 
 const bottomA = document.createElement('a');
 document.body.appendChild(bottomA);
@@ -80,16 +105,61 @@ bottomA.classList.add = ('bottom');
 bottomA.href = 'https://www.youtube.com/watch?v=93hq0YU3Gqk';
 bottomA.appendChild(button);
 destination.appendChild(bottomA);
+
+//event listener
+
+document.addEventListener('keypress', function(event){
+    if (event.key === 's') {
+        bottomA.href = 'https://www.youtube.com/watch?v=93hq0YU3Gqk';
+        button.click()
+    }})
+
+*/
+
+//EVENT LISTENER 5 KEYDOWN harder version
+
+// Pressing the B key will take you to the 
+// bottom of the page
+//query selectors
+const destination = document.querySelectorAll('.destination')[1];
+const footer = document.querySelector('.footer');
+const header = document.querySelector('header');
+//button code (placed at the bottom of the page - when clicked will take you to the top of the page)
+
+const button = document.createElement('button');
+document.body.appendChild(button);
+button.id = 'button';
+destination.appendChild(button);
+button.style = "width: 150px; height: 40px; background-color: red; border: 2px solid black; margin: 15% 0% 2% 12%; font-family: times new roman; font-weight: bold;"
+button.innerText = ('BACK TO THE TOP');
+header.id = 'header';
+//link code
+//create the link
+const bottomA = document.createElement('a');
+//put it on the page
+document.body.appendChild(bottomA);
+//give it the same class as button
+bottomA.classList.add = ('bottom');
+//give it a local url of header so when clicked it will take 
+//you to the header
+bottomA.href = '#header';
+//put it on the button
+bottomA.appendChild(button);
+destination.appendChild(bottomA);
+//event listener if the b key is pressed the link will
+//change from .header to .footer and the button will be clicked.
 document.addEventListener('keypress', function(event){
     if (event.key === 'b') {
+        bottomA.href = '#button';
         button.click()
     } else {
-        button.href = '.header'
-    }
-})
+        null
+    }})
+
+
 
 //EVENT LISTENER 6 scroll
-const header = document.querySelector('header');
+//Scrolling makes the nav-bar fade
 const navContainer = document.createElement('div')
 document.body.prepend(navContainer);
 navContainer.appendChild(header);
@@ -112,45 +182,64 @@ document.addEventListener('scroll', function() {
 
 
 
-//EVENT LISTENER 7 Mouseup 
+//EVENT LISTENER 7 Mouseup + event propagation
+//Un-depressing the mouse over the intro will turn the background 
+//red
 
-const anotherMouseEvent = document.querySelector('.intro')
+const anotherMouseEvent = document.querySelectorAll('.content-section');
 
-anotherMouseEvent.addEventListener('mouseup', function(){
-    anotherMouseEvent.style.backgroundColor = 'red';
+home.addEventListener('mousedown', function(){
+    home.style.background = ('green');
+/*
+
+//NESTED EVENT LISTENERS:
+    anotherMouseEvent.forEach(function(anotherMouseEvent){
+        anotherMouseEvent.addEventListener('mouseup', function(event){
+            anotherMouseEvent.style.backgroundColor = 'red';
+            event.stopPropagation();
+        })
+    })
+    anotherMouseEvent.forEach(function(anotherMouseEvent){
+        anotherMouseEvent.addEventListener('mousedown', function(event){
+            anotherMouseEvent.style.backgroundColor = 'gold';
+            event.stopPropagation();
+        })
+    })
+*/
+})
+anotherMouseEvent.forEach(function(anotherMouseEvent){
+    anotherMouseEvent.addEventListener('mouseup', function(event){
+        anotherMouseEvent.style.backgroundColor = 'red';
+        event.stopPropagation();
+    })
 })
 
-//EVENT LISTENER 8 Mousedown
 
-anotherMouseEvent.addEventListener('mousedown', function(){
-    anotherMouseEvent.style.backgroundColor = 'yellow';
-    
-    home.addEventListener('click', event4);
-    function event4() {
-      home.style.backgroundColor = 'dodgerBlue';
-    }  
-    home.addEventListener('click', function(eventHandler) {
-        eventHandler.stopPropagation();
-       })
+//EVENT LISTENER 8 Mousedown + event propagation
+//depressing the mouse over the content section will turn the background 
+//yellow
 
-})
 
-//EVENT LISTENER 9 + event propogation
+
+    anotherMouseEvent.forEach(function(anotherMouseEvent){
+        anotherMouseEvent.addEventListener('mousedown', function(event){
+            anotherMouseEvent.style.backgroundColor = 'gold';
+            event.stopPropagation();
+        })
+    })
+
+
+//EVENT LISTENER 9 
+// double clicking on the img will change it. 
 const imgTag = document.querySelector('.content-destination img')
 
 document.addEventListener('dblclick', function(){
 imgTag.src = 'img/postcard 1.jpg'
-home.addEventListener('click', event4);
 
-        function event4() {
-          home.style.backgroundColor = 'yellow';
-        }  
-         home.addEventListener('click', function(eventHandler) {
-             eventHandler.stopPropagation();
-            })
 })
 
 //Event Listener 10
+// right clicking on the image will change it.
 document.addEventListener('contextmenu', function(){
     imgTag.src = 'img/destination.jpg'
 })
