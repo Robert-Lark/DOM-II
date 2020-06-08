@@ -188,7 +188,7 @@ document.addEventListener('scroll', function() {
 
 const anotherMouseEvent = document.querySelectorAll('.content-section');
 
-home.addEventListener('mousedown', function(){
+home.addEventListener('mouseup', function(){
     home.style.background = ('green');
 /*
 
@@ -252,3 +252,63 @@ const navA = document.querySelector('.nav-link');
 navA.addEventListener('click', function(event){
     event.preventDefault();
 })
+
+
+
+//stretch
+
+
+const stretchDiv = document.createElement('div'); stretchDiv.id = 'stretch'; document.body.appendChild(stretchDiv);
+const img001 = document.createElement('img')
+img001.src = 'img/Screen Shot 2020-06-08 at 1.41.48 PM.png'; 
+const img002 = document.createElement('img')
+img002.src = 'img/Screen Shot 2020-06-08 at 1.41.27 PM.png'; 
+const img003 = document.createElement('img')
+img003.src = 'img/Screen Shot 2020-06-08 at 1.41.17 PM.png'; 
+const img004 = document.createElement('img')
+img004.src = 'img/Screen Shot 2020-06-08 at 1.40.56 PM.png';
+//document.body.appendChild(img001);
+// document.body.appendChild(img002);
+// document.body.appendChild(img003);
+// document.body.appendChild(img004);
+const section001 = document.createElement('section'); section001.classList.add('panel');section001.classList.add('red'); document.body.appendChild(section001);
+const section002 = document.createElement('section'); section002.classList.add('panel');section002.classList.add('orange'); document.body.appendChild(section002);
+const section003 = document.createElement('section'); section003.classList.add('panel');section003.classList.add('purple'); document.body.appendChild(section003);
+const section004 = document.createElement('section'); section004.classList.add('panel');section004.classList.add('green'); document.body.appendChild(section004);
+
+const allSections = document.querySelector('section .panel'); 
+
+//stretchDiv.appendChild(img001);
+stretchDiv.appendChild(section001);
+stretchDiv.appendChild(section002);
+stretchDiv.appendChild(section003);
+stretchDiv.appendChild(section004);
+
+section001.appendChild(img001);
+section002.appendChild(img002);
+section003.appendChild(img003);
+section004.appendChild(img004);
+
+const panel = document.querySelector('.panel');
+panel.style = 'position: absolute; will-change: transform;';
+
+document.addEventListener('scroll', function(){
+    gsap.registerPlugin(ScrollTrigger);
+
+gsap.to(".panel:not(:last-child)", {
+  yPercent: -100, 
+  ease: "none",
+  stagger: 0.5,
+  scrollTrigger: {
+    trigger: "#container",
+    start: "top top",
+    end: "+=300%",
+    scrub: true,
+    pin: true
+  }
+});
+
+
+gsap.set(".panel", {zIndex: (i, target, targets) => targets.length - i});
+})
+
